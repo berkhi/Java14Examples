@@ -20,6 +20,7 @@ public class Question33 {
         System.out.println("Neyi değiştirmek istiyosun");
         String degisen = scanner.nextLine();
 
+
         if(kelime.contains(degisen)){
             System.out.println("Neyle değiştirmek istiyosun");
             String eklenen = scanner.nextLine();
