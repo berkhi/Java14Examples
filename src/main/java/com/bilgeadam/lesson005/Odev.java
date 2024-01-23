@@ -30,18 +30,14 @@ public class Odev {
         System.out.println("-------------");
 
 
-        System.out.println(Arrays.toString(sayilar));
-
-        Arrays.sort(sayilar);
-
-
-
         int[] sayilar2 = {95, 1258, 1258, 1258, 99, -256, 16, 0, 36, 81, 1258, 1258, 1258};
 
         Arrays.sort(sayilar2);
-          for (int i=sayilar2.length-1; i>=0; i--) {
-            if(sayilar2[i]!=sayilar2[(i-1)]) {
-                System.out.println("En küçük ikinci say**********ı = "+sayilar2[i-1]);
+        System.out.println(Arrays.toString(sayilar2));
+
+        for (int i = sayilar2.length - 1; i >= 0; i--) {
+            if (sayilar2[i] != sayilar2[(i - 1)]) {
+                System.out.println("En küçük ikinci say**********ı = " + sayilar2[i - 1]);
                 break;
             }
         }
@@ -61,7 +57,6 @@ public class Odev {
             }
         }
         System.out.println("Toplam " + toplam);
-
 
 
         System.out.println("2. soru--------Farklı Çözüm---------");
