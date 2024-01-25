@@ -1,8 +1,10 @@
 package com.bilgeadam.lesson001;
 
+import com.bilgeadam.lesson008.Question48;
+
 import java.util.Scanner;
 
-public class Question2 {
+public class Question2{
 
     public static void main(String[] args) {
 
@@ -20,6 +22,7 @@ public class Question2 {
         double hamFiyat = satisFiyati - kdvVeKarMiktariToplami;
 
         System.out.println("Ürünü Ham fiyatı " + hamFiyat);
+
     }
 
 }

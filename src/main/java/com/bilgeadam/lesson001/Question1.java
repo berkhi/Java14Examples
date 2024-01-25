@@ -1,5 +1,7 @@
 package com.bilgeadam.lesson001;
 
+import com.bilgeadam.lesson008.Question48;
+
 import java.util.Scanner;
 
 public class Question1 {
