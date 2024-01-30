@@ -1,6 +1,5 @@
-package com.bilgeadam.lesson010;
+package com.bilgeadam.lesson010.profile;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -50,15 +49,16 @@ public class Main {
 
         System.out.println("--------------------");
 
-        Profile ilkOlusturlanProfil = profilOlustur();
-        Profile ikinciOlusturlanProfil = profilOlustur();
+        Profile mehmetinPRofili = profilOlustur();
+        Profile ahmetinProfili = profilOlustur();
 
-        System.out.println(ilkOlusturlanProfil.hashCode());
-        System.out.println(ikinciOlusturlanProfil.hashCode());
+        postGonder(mehmetinPRofili);
 
-        System.out.println(ilkOlusturlanProfil.getUsername());
+        postGonder(ahmetinProfili);
 
-        System.out.println(ikinciOlusturlanProfil.getUsername());
+        mehmetinPRofili.postlariGoster();
+        ahmetinProfili.postlariGoster();
+
     }
 
 
@@ -80,7 +80,31 @@ public class Main {
         return profile;
     }
 
+    public static Profile profilOlustur2() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Kullanıcı adınızı girin");
+        String username = scanner.nextLine();
+
+        System.out.println("Açıklama girin");
+        String description =  scanner.nextLine();
+
+        System.out.println("Resim Ekle");
+        String image = scanner.nextLine();
+
+        Profile profile = new Profile(username,description,image);
+
+        return profile;
+    }
+
     //postGonder diye bir method yazalım
     //kullanıcıdan alcaz bilgileri
+
+    public static void postGonder(Profile profile){
+
+        System.out.println(profile.getUsername() + " Bey Lütfen Post İsmini Girin");
+        Scanner scanner = new Scanner(System.in);
+        profile.postOlustur(scanner.nextLine());
+    }
 
 }

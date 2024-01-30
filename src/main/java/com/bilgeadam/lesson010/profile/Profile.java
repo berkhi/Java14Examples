@@ -1,4 +1,4 @@
-package com.bilgeadam.lesson010;
+package com.bilgeadam.lesson010.profile;
 
 public class Profile {
 
@@ -11,6 +11,16 @@ public class Profile {
     private boolean isBlueTick;
     private int postSize;
     private String[] posts = new String[10];
+
+    public Profile() {
+
+    }
+
+    public Profile(String username, String description, String imageUrl) {
+        this.username = username;
+        this.description = description;
+        this.imageUrl = imageUrl;
+    }
 
     public int getPostSize() {
         return postSize;
