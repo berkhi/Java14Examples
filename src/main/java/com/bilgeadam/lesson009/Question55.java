@@ -3,7 +3,6 @@ package com.bilgeadam.lesson009;
 public class Question55 {
     public static void main(String[] args) {
 
-
         // Doğum yılınızı girerek yasınızı ve
         // hangi yüzyılda doğdugunu hesaplayan metotları yazalım
 
