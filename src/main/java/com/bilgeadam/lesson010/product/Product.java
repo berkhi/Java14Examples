@@ -1,13 +1,32 @@
 package com.bilgeadam.lesson010.product;
 
+import com.bilgeadam.lesson010.product.util.RandomGenerateCode;
+
 public class Product {
     private String id;
     private String name;
     private String productCode;
-    private String image;
     private int stock;
     private boolean isActive;
     private double price;
+    public static int toplamUrunSayisi;
+
+    public Product(String name, int stock, double price) {
+        this.id = RandomGenerateCode.randomGenerateId();
+        this.name = name;
+        this.productCode = RandomGenerateCode.randomProductCodeGenerator(name);
+        this.stock = stock;
+        this.isActive = true;
+        this.price = price;
+    }
+
+    public static int getToplamUrunSayisi() {
+        return toplamUrunSayisi;
+    }
+
+    public static void setToplamUrunSayisi(int toplamUrunSayisi) {
+        Product.toplamUrunSayisi = toplamUrunSayisi;
+    }
 
     public String getId() {
         return id;
@@ -33,13 +52,6 @@ public class Product {
         this.productCode = productCode;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
 
     public int getStock() {
         return stock;
