@@ -8,6 +8,8 @@ public class Main {
 
     public static Product[] products = new Product[30];
 
+    static Cart cart = new Cart();
+    
     public static void main(String[] args) {
 
 
@@ -34,13 +36,38 @@ public class Main {
         //Her sepete ekleme işlmeinde ürünün stokunu azaltalım.
         //eğer kullanıcı 10 taneden fazla ürün sepete ekleiyosa sepette yer kalmadı diye bilgi verelim
 
+        //Menu
+        //1 - ProductEkle
+        //2- Ürün ismine Göre arama yapsın Asusun tüm bilgileri --> fiyat stock
+        //3- Fiyat listesi --> ürün ismi : ()  ürünün Fiyatı()
+        //4- Sepete Ekle
+        //5- Sepeti görüntülesin
 
+        databaseyeUrunYolla();
         addProduct();
         addProduct();
         addProduct();
 
-        showProducts();
+        sepeteEklemeIslem();
 
+        showCart();
+
+
+    }
+
+    public static void databaseyeUrunYolla(){
+        Product product = new Product("Appel",52,15);
+        Product product2 = new Product("Appel",52,15);
+        Product product3 = new Product("Appel",52,15);
+
+        products[Product.toplamUrunSayisi] = product;
+        Product.toplamUrunSayisi++;
+
+        products[Product.toplamUrunSayisi] = product;
+        Product.toplamUrunSayisi++;
+
+        products[Product.toplamUrunSayisi] = product;
+        Product.toplamUrunSayisi++;
 
     }
 
@@ -57,9 +84,7 @@ public class Main {
         System.out.println("Product Price: ");
         double price = scanner.nextDouble();
 
-
         Product product = new Product(productName, stock, price);
-
 
         products[Product.getToplamUrunSayisi()] = product;
 
@@ -77,6 +102,30 @@ public class Main {
             System.out.println();
         }
     }
+
+    public static void sepeteEklemeIslem(){
+        Scanner scanner = new Scanner(System.in);
+        showProducts();
+        System.out.println("Almak İstediğniz Ürünün Product Kodunu girin: ");
+        String code = scanner.nextLine();
+
+        for (int i = 0; i < Product.toplamUrunSayisi; i++) {
+            if(products[i].getProductCode().equals(code)){
+                Product product = products[i];
+                cart.sepeteEkle(product);
+            }else {
+                System.out.println("Girdiğiniz ürün yoktur");
+            }
+        }
+    }
+    
+    public static void showCart(){
+        for (int i = 0; i < cart.getProductsNumber(); i++) {
+            System.out.println("Ürün: " + cart.getProducts()[i].getName());
+        }
+    }
+
+
 
 
 
