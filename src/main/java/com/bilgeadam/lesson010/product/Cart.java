@@ -32,15 +32,25 @@ public class Cart {
     }
 
     public void sepeteEkle(Product product) {
-        if (this.productsNumber >= 10) {
-            System.out.println("Sepeteinizde yer yoktur");
+        if (product.isActive()) {
+            if (this.productsNumber >= 10) {
+                System.out.println("Sepeteinizde yer yoktur");
+            } else {
+                products[productsNumber] = product;
+                productsNumber++;
+
+                this.totalPrice += product.getPrice();
+                product.setStock(product.getStock() - 1);
+
+                if (product.getStock() <= 0) {
+                    product.setActive(false);
+                }
+
+            }
         } else {
-            products[productsNumber] = product;
-            productsNumber++;
-
-            this.totalPrice += product.getPrice();
-            product.setStock(product.getStock() - 1);
-
+            System.out.println("Ürün Stokta kalmadı");
         }
+
+
     }
 }

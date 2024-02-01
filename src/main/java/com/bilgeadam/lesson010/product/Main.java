@@ -9,7 +9,9 @@ public class Main {
     public static Product[] products = new Product[30];
 
     static Cart cart = new Cart();
-    
+
+    static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
 
 
@@ -55,10 +57,10 @@ public class Main {
 
     }
 
-    public static void databaseyeUrunYolla(){
-        Product product = new Product("Appel",52,15);
-        Product product2 = new Product("Appel",52,15);
-        Product product3 = new Product("Appel",52,15);
+    public static void databaseyeUrunYolla() {
+        Product product = new Product("Appel", 52, 15);
+        Product product2 = new Product("Appel", 52, 15);
+        Product product3 = new Product("Appel", 52, 15);
 
         products[Product.toplamUrunSayisi] = product;
         Product.toplamUrunSayisi++;
@@ -73,7 +75,7 @@ public class Main {
 
 
     public static Product addProduct() {
-        Scanner scanner = new Scanner(System.in);
+
 
         System.out.println("Product Name: ");
         String productName = scanner.nextLine();
@@ -94,40 +96,96 @@ public class Main {
 
     public static void showProducts() {
         for (int i = 0; i < Product.toplamUrunSayisi; i++) {
-
-            System.out.printf("""
-                    Product Code: %s
-                    Urun ismi: %s
-                    Urun stock: %d""", products[i].getProductCode(), products[i].getName(), products[i].getStock());
-            System.out.println();
+            if (products[i].isActive()) {
+                System.out.printf("""
+                        Product Code: %s
+                        Urun ismi: %s
+                        Urun stock: %d""", products[i].getProductCode(), products[i].getName(), products[i].getStock());
+                System.out.println();
+            }
         }
     }
 
-    public static void sepeteEklemeIslem(){
-        Scanner scanner = new Scanner(System.in);
+    public static void sepeteEklemeIslem() {
         showProducts();
         System.out.println("Almak İstediğniz Ürünün Product Kodunu girin: ");
         String code = scanner.nextLine();
 
         for (int i = 0; i < Product.toplamUrunSayisi; i++) {
-            if(products[i].getProductCode().equals(code)){
+            if (products[i].getProductCode().equals(code)) {
                 Product product = products[i];
                 cart.sepeteEkle(product);
-            }else {
+            } else {
                 System.out.println("Girdiğiniz ürün yoktur");
             }
         }
     }
-    
-    public static void showCart(){
+
+    public static void showCart() {
+        System.out.println("Sepet Tutarı " + cart.getTotalPrice());
         for (int i = 0; i < cart.getProductsNumber(); i++) {
             System.out.println("Ürün: " + cart.getProducts()[i].getName());
         }
     }
 
 
+    //Menu
+    //1 - ProductEkle
+    //2- Ürün ismine Göre arama yapsın Asusun tüm bilgileri --> fiyat stock
+    //3- Fiyat listesi --> ürün ismi : ()  ürünün Fiyatı()
+    //4- Sepete Ekle
+    //5- Sepeti görüntülesin
 
+    public static void menu() {
 
+        boolean check = true;
+        while (check) {
+            System.out.println("1- Product Ekle");
+            System.out.println("2- Ürünün İsmine Göre arama yap");
+            System.out.println("3- Fiyat listesi");
+            System.out.println("4- Sepete Ürün Ekle");
+            System.out.println("5- Sepeti Görüntüle");
+
+            int value = scanner.nextInt();
+
+            scanner.nextLine();
+            switch (value) {
+                case 1:
+                    addProduct();
+                    break;
+                case 2:
+                    findProductByName();
+                    break;
+                case 3:
+                    priceList();
+                    break;
+                case 4:
+                    sepeteEklemeIslem();
+                    break;
+                case 5:
+                    showCart();
+                    break;
+            }
+        }
+    }
+
+    private static void findProductByName() {
+
+        System.out.println("ürün ismini Girin: ");
+        String productName = scanner.nextLine();
+
+        for (int i = 0; i < Product.toplamUrunSayisi; i++) {
+            if (products[i].getName().equalsIgnoreCase(productName)) {
+                System.out.println(products[i]);
+            }
+        }
+    }
+
+    private static void priceList() {
+        for (int i = 0; i < Product.toplamUrunSayisi; i++) {
+            System.out.println("Ürün ismi: " + products[i].getName() + " Fiyatı " + products[i].getPrice());
+        }
+    }
 
 
 }

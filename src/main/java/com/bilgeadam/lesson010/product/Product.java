@@ -16,7 +16,7 @@ public class Product {
         this.name = name;
         this.productCode = RandomGenerateCode.randomProductCodeGenerator(name);
         this.stock = stock;
-        this.isActive = true;
+        this.isActive = stokKontrol(stock);
         this.price = price;
     }
 
@@ -75,5 +75,21 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+
+    public boolean stokKontrol(int stock) {
+        return stock > 0;
+    }
+
+
+    @Override
+    public String toString() {
+        return "---------------------" + '\n' +
+                "Product name: " + name + '\n' +
+                "Product Code: " + productCode + '\n' +
+                "Stock: " + stock + '\n' +
+                "Price: " + price + '\n' +
+                "---------------------";
     }
 }
