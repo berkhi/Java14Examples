@@ -10,24 +10,28 @@ public class Main {
     }
 
     public static void menu() {
-        Pizza pizza2 = null;
-        boolean cikis = true;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Pizzanızı belirtin");
-        boolean isVegi = true;
-        String pizzaTercihi = scanner.nextLine();
-        if (pizzaTercihi.equals("vegi")) {
-            pizza2 = new Pizza(isVegi);
-        } else if (pizzaTercihi.equals("normal")) {
-            isVegi = false;
-            pizza2 = new Pizza(isVegi);
-        } else {
-            System.out.println("böyle bir pizza bulunmamakta");
-            cikis = false;
+
+
+        Pizza pizza = null;
+        boolean pizzaCheck= true;
+
+        System.out.println("Neli Pizza: ");
+        String choosePizza = scanner.nextLine();
+
+        if(choosePizza.equalsIgnoreCase("vegi")){
+            pizza = new Pizza(pizzaCheck);
+        } else if (choosePizza.equalsIgnoreCase("normal")) {
+            pizzaCheck = false;
+            pizza = new Pizza(pizzaCheck);
+        }else {
+            System.out.println("Böyle bir pizza yok");
         }
-        int sosSayac = 0;
-        int peynirSayac = 0;
+
+
+        boolean cikis = true;
         while (cikis) {
+
             System.out.println("Seçim Yapınız ");
             System.out.println("--Menu-- ");
             System.out.println("1- SosEkle ");
@@ -39,27 +43,19 @@ public class Main {
 
             switch (secim) {
                 case 1:
-                    pizza2.sosEkle();
+                    pizza.sosEkle();
                     break;
                 case 2:
-                    pizza2.peynirEkle();
-                    peynirSayac++;
+                    pizza.peynirEkle();
                     break;
                 case 3:
-                    if (peynirSayac > 0) {
-                        pizza2.peynirCikar();
-                        peynirSayac--;
-                    } else {
-                        System.out.println("peynir eklenmemiş");
-                    }
+                    pizza.peynirCikar();
                     break;
                 case 4:
-                    pizza2.sosCikar();
+                    pizza.sosCikar();
                     break;
                 case 5:
-                    // System.exit(0);
-                    pizza2.fisAl();
-                    cikis = false;
+                    pizza.fisAl();
                     break;
 
                 default:
@@ -69,3 +65,11 @@ public class Main {
         }
     }
 }
+
+
+
+
+
+
+
+
