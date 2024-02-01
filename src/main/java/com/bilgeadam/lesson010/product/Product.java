@@ -11,6 +11,10 @@ public class Product {
     private double price;
     public static int toplamUrunSayisi;
 
+    public static final double PLAT_DISCOUNT = 0.9;
+    public static final double GOLD_DISCOUNT = 0.5;
+    public static final double NORMAL_DISCOUNT = 0.2;
+
     public Product(String name, int stock, double price) {
         this.id = RandomGenerateCode.randomGenerateId();
         this.name = name;

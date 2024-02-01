@@ -1,5 +1,8 @@
 package com.bilgeadam.lesson010.product;
 
+import com.bilgeadam.lesson010.product.messages.ErrorMessage;
+import com.bilgeadam.lesson010.product.messages.SuccessMessage;
+
 import javax.security.sasl.SaslClient;
 import java.util.Random;
 import java.util.Scanner;
@@ -110,11 +113,11 @@ public class Main {
             if (products[i].getProductCode().equals(code) && products[i].isActive()) {
                 Product product = products[i];
                 cart.sepeteEkle(product);
-                System.out.println("Ürün sepete Eklendi: ");
+                System.out.println(SuccessMessage.SUCCESS_ADD_CART);
                 return;
             }
         }
-        System.out.println("Ürün Bulunamadı : ");
+        System.out.println(ErrorMessage.PRODUCT_NOT_FOUND);
     }
 
     public static void showCart() {
@@ -132,6 +135,8 @@ public class Main {
     //4- Sepete Ekle
     //5- Sepeti görüntülesin
 
+    //6-
+
     public static void menu() {
 
         boolean check = true;
@@ -141,6 +146,7 @@ public class Main {
             System.out.println("3- Fiyat listesi");
             System.out.println("4- Sepete Ürün Ekle");
             System.out.println("5- Sepeti Görüntüle");
+            System.err.println("6- Belirtilen ürüne İndirim uygulayalım %10");
 
             int value = scanner.nextInt();
 
@@ -162,13 +168,25 @@ public class Main {
                     showCart();
                     break;
                 case 6:
+                    showProducts();
+                    discountForProduct(findProductByName());
+                    break;
+                case 0:
                     check = false;
                     break;
             }
         }
     }
 
-    private static void findProductByName() {
+    private static void discountForProduct(Product product) {
+        if(product != null){
+            product.setPrice(product.getPrice() * Product.NORMAL_DISCOUNT);
+        }else {
+            System.out.println(ErrorMessage.PRODUCT_NOT_FOUND);
+        }
+    }
+
+    private static Product findProductByName() {
 
         System.out.println("ürün ismini Girin: ");
         String productName = scanner.nextLine();
@@ -176,8 +194,10 @@ public class Main {
         for (int i = 0; i < Product.toplamUrunSayisi; i++) {
             if (products[i].getName().equalsIgnoreCase(productName)) {
                 System.out.println(products[i]);
+                return products[i];
             }
         }
+        return null;
     }
 
     private static void priceList() {
