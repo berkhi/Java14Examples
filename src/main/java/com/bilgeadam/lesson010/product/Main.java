@@ -46,29 +46,24 @@ public class Main {
         //5- Sepeti görüntülesin
 
         databaseyeUrunYolla();
-        addProduct();
-        addProduct();
-        addProduct();
 
-        sepeteEklemeIslem();
-
-        showCart();
+        menu();
 
 
     }
 
     public static void databaseyeUrunYolla() {
-        Product product = new Product("Appel", 52, 15);
-        Product product2 = new Product("Appel", 52, 15);
-        Product product3 = new Product("Appel", 52, 15);
+        Product product = new Product("Apple", 0, 3000);
+        Product product2 = new Product("Asus", 3, 2000);
+        Product product3 = new Product("Huwaei", 2, 1000);
 
         products[Product.toplamUrunSayisi] = product;
         Product.toplamUrunSayisi++;
 
-        products[Product.toplamUrunSayisi] = product;
+        products[Product.toplamUrunSayisi] = product2;
         Product.toplamUrunSayisi++;
 
-        products[Product.toplamUrunSayisi] = product;
+        products[Product.toplamUrunSayisi] = product3;
         Product.toplamUrunSayisi++;
 
     }
@@ -112,13 +107,14 @@ public class Main {
         String code = scanner.nextLine();
 
         for (int i = 0; i < Product.toplamUrunSayisi; i++) {
-            if (products[i].getProductCode().equals(code)) {
+            if (products[i].getProductCode().equals(code) && products[i].isActive()) {
                 Product product = products[i];
                 cart.sepeteEkle(product);
-            } else {
-                System.out.println("Girdiğiniz ürün yoktur");
+                System.out.println("Ürün sepete Eklendi: ");
+                return;
             }
         }
+        System.out.println("Ürün Bulunamadı : ");
     }
 
     public static void showCart() {
@@ -164,6 +160,9 @@ public class Main {
                     break;
                 case 5:
                     showCart();
+                    break;
+                case 6:
+                    check = false;
                     break;
             }
         }
