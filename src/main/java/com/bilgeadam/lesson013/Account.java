@@ -1,15 +1,34 @@
 package com.bilgeadam.lesson013;
 
 public class Account {
+    public final static int KREDI_PUAN_MIKTARI = 10;
 
     private String accountNo;
     private double balance;
     private boolean krediBasvurusu;
     private double istenenKrediMiktari;
+    private double krediBorcu;
+    private int krediPuani;
 
     public Account(String accountNo, double balance) {
         this.accountNo = accountNo;
         this.balance = balance;
+    }
+
+    public double getKrediBorcu() {
+        return krediBorcu;
+    }
+
+    public void setKrediBorcu(double krediBorcu) {
+        this.krediBorcu = krediBorcu;
+    }
+
+    public int getKrediPuani() {
+        return krediPuani;
+    }
+
+    public void setKrediPuani(int krediPuani) {
+        this.krediPuani = krediPuani;
     }
 
     public double getIstenenKrediMiktari() {

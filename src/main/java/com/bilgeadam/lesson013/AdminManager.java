@@ -10,6 +10,19 @@ public class AdminManager {
 
             account.setBalance(account.getBalance() + account.getIstenenKrediMiktari());
 
+            account.setKrediBorcu(account.getIstenenKrediMiktari());
+
+            account.setKrediBasvurusu(false);
+            account.setIstenenKrediMiktari(0);
+
+        } else {
+            System.out.println("Kredi başvurusu yoktur");
+        }
+    }
+
+    public void krediBasvurusunuRedder(Account account) {
+        if (account.isKrediBasvurusu()) {
+            System.out.println(" Kredi başvurunuz Reddedilmiştir.. ");
             account.setKrediBasvurusu(false);
             account.setIstenenKrediMiktari(0);
 

@@ -33,24 +33,37 @@ public class Main {
 
     //onaya düşecek.
 
+    //Kredi başvurusnu onayla
 
+    //Kredi başvurusnu reddet.
+
+
+    //Kredi borcunu ödesin.
+    //her ödediğinde kullanıcını kredi puanı 10 artsın
+    //nakitle kredi kartı borcunu ödesin.
+
+    //hesaptanKrediBorcunu ödesin
+
+    //User Nakit avans çekebilsin
+    //nakit avans çekebilmesi için kredi puanının 20 den fazla olması gerekiyor
+    //Nakit avans hesabındaki paranın yarısı kadar.
 
 
     public static void main(String[] args) {
-        Account hesap1 = new Account("00666",0);
-        Account hesap2 = new Account("00777",0);
+        Account hesap1 = new Account("00666", 0);
+        Account hesap2 = new Account("00777", 0);
 
         AccountManager accountManager = new AccountManager();
         UserManager manager = new UserManager();
         AdminManager adminManager = new AdminManager();
 
-        accountManager.paraYatir(hesap2,5000);
-        accountManager.paraYatir(hesap2,5000);
-        accountManager.paraCek(hesap2,2000);
+        accountManager.paraYatir(hesap2, 5000);
+        accountManager.paraYatir(hesap2, 5000);
+        accountManager.paraCek(hesap2, 2000);
 
-        User user = new User("mehmet berkin","yardimci");
+        User user = new User("mehmet berkin", "yardimci");
 
-        manager.krediBasvurusundaBulun(hesap2,50000);
+        manager.krediBasvurusundaBulun(hesap2, 50000);
 
         System.out.println(hesap2.getIstenenKrediMiktari());
         System.out.println(hesap2.isKrediBasvurusu());
@@ -66,14 +79,19 @@ public class Main {
         System.out.println(hesap2.getBalance());
 
         System.out.println("****************");
+        System.out.println(hesap2.getBalance());
+
+        System.out.println(hesap2.getKrediBorcu());
+        manager.krediBorcunuOde(hesap2, 65000);
+        System.out.println(hesap2.getKrediBorcu());
+
+        System.out.println(hesap2.getBalance());
+
 
 
 
 
     }
-
-
-
 
 
 }
