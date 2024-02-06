@@ -17,11 +17,10 @@ public class UserManager {
         double fazlaMiktar = taksit - account.getKrediBorcu();
         if (account.getKrediBorcu() > 0) {
             if (taksit > account.getKrediBorcu()) {
-
                 account.setBalance(account.getBalance() + fazlaMiktar);
                 System.out.println(fazlaMiktar + " Tl fazla yatırdınız fazla miktar hesabınıza aktarıldı");
                 account.setKrediBorcu(0);
-            }else {
+            } else {
                 account.setBalance(fazlaMiktar);
                 return;
             }
@@ -33,10 +32,26 @@ public class UserManager {
     }
 
     public void hesaptanKrediBorcuOde(Account account, int taksit) {
+        if (account.getKrediBorcu() > 0) {
+            if (account.getBalance() >= taksit) {
 
+                account.setKrediBorcu(account.getKrediBorcu() - taksit);
+                account.setBalance(account.getBalance() - taksit);
+                account.setKrediPuani(account.getKrediPuani() + Account.KREDI_PUAN_MIKTARI);
+            } else {
+                System.out.println("Bakiye yetersiz");
+            }
+        } else {
+            System.out.println("Kredi borcunuz yoktur");
+        }
     }
+    public void nakitAvansCek(Account account) {
+        double nakitAvansMiktari = (account.getBalance() / 2);
 
-    public void nakitAvansCek(Account account, int taksit) {
+        if (account.getKrediPuani() >= 50) {
+            account.setBalance(account.getBalance() + nakitAvansMiktari);
+            System.out.println(nakitAvansMiktari + " Tl tutarında nakit  avans" + account.getAccountNo() + " nolu hesabınıza tanımlanmıştır");
+        }
 
     }
 }

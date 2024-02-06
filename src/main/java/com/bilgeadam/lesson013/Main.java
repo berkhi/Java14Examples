@@ -49,6 +49,15 @@ public class Main {
     //Nakit avans hesabındaki paranın yarısı kadar.
 
 
+    //bankadan kredi çekip kredimiz onaylandıktan sonra
+    //kullanıcıya mail gönderelim
+
+    //Mail
+    //Subject, content, gönderen, ne zaman gönderildi.
+
+    //Dekont
+    //Tutar, hesap numarası,  aylık ödeme tutarı(Ayılık 10 da biri kadar takist ödeyecek)
+
     public static void main(String[] args) {
         Account hesap1 = new Account("00666", 0);
         Account hesap2 = new Account("00777", 0);
