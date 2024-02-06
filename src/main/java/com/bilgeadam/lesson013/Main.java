@@ -1,5 +1,7 @@
 package com.bilgeadam.lesson013;
 
+import java.time.LocalDateTime;
+
 public class Main {
 
 
@@ -52,11 +54,17 @@ public class Main {
     //bankadan kredi çekip kredimiz onaylandıktan sonra
     //kullanıcıya mail gönderelim
 
-    //Mail
-    //Subject, content, gönderen, ne zaman gönderildi.
+    //Mail sınıfı açacaz
+    //Subject, content, gönderen, ne zaman gönderildi. Dekont
 
-    //Dekont
+    //Dekont sınıfı açıacz
     //Tutar, hesap numarası,  aylık ödeme tutarı(Ayılık 10 da biri kadar takist ödeyecek)
+
+    //kredi başvuru HK.
+    //admin@xbanka.com
+    //2023-06-02- 2:18
+    //şu hesapnumarslı accountunza şu tutarda krediniz onaylnamıştır
+    // aylık taksidiniz şu akdardır.
 
     public static void main(String[] args) {
         Account hesap1 = new Account("00666", 0);
@@ -71,30 +79,19 @@ public class Main {
         accountManager.paraCek(hesap2, 2000);
 
         User user = new User("mehmet berkin", "yardimci");
+        user.setAccount(hesap2);
 
         manager.krediBasvurusundaBulun(hesap2, 50000);
 
-        System.out.println(hesap2.getIstenenKrediMiktari());
-        System.out.println(hesap2.isKrediBasvurusu());
-        System.out.println(hesap2.getBalance());
-        System.out.println("****************");
+        adminManager.krediBasvurusunuOnayla(user);
 
-        adminManager.krediBasvurusunuOnayla(hesap2);
+        System.out.println("Subject "+user.getGelenKutusu().get(0).getSubject());
+        System.out.println("Gönderen "+user.getGelenKutusu().get(0).getSender());
+        System.out.println("Geen Saat: " + user.getGelenKutusu().get(0).getSendingDate());
+        System.out.println("İçerik " +user.getGelenKutusu().get(0).getContent());
+        System.out.println("Aylık Ödeme Miktarı " +user.getGelenKutusu().get(0).getDekont().getPayPerMounth());
 
-        System.out.println("***********");
 
-        System.out.println(hesap2.getIstenenKrediMiktari());
-        System.out.println(hesap2.isKrediBasvurusu());
-        System.out.println(hesap2.getBalance());
-
-        System.out.println("****************");
-        System.out.println(hesap2.getBalance());
-
-        System.out.println(hesap2.getKrediBorcu());
-        manager.krediBorcunuOde(hesap2, 65000);
-        System.out.println(hesap2.getKrediBorcu());
-
-        System.out.println(hesap2.getBalance());
 
 
 

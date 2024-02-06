@@ -2,18 +2,17 @@ package com.bilgeadam.lesson013;
 
 public class AdminManager {
 
-    public void krediBasvurusunuOnayla(Account account) {
+    public void krediBasvurusunuOnayla(User user) {
 
-        //kredi başvurusnda bulumuş mu
-        if (account.isKrediBasvurusu()) {
+        if (user.getAccount().isKrediBasvurusu()) {
             System.out.println(" Kredi başvurunuz onaylanmıştır.. ");
+            user.getAccount().setBalance(user.getAccount().getBalance() + user.getAccount().getIstenenKrediMiktari());
 
-            account.setBalance(account.getBalance() + account.getIstenenKrediMiktari());
+            user.getAccount().setKrediBorcu(user.getAccount().getIstenenKrediMiktari());
+            user.getAccount().setKrediBasvurusu(false);
+            user.getAccount().setIstenenKrediMiktari(0);
 
-            account.setKrediBorcu(account.getIstenenKrediMiktari());
-
-            account.setKrediBasvurusu(false);
-            account.setIstenenKrediMiktari(0);
+            sendEmail(user);
 
         } else {
             System.out.println("Kredi başvurusu yoktur");
@@ -30,4 +29,23 @@ public class AdminManager {
             System.out.println("Kredi başvurusu yoktur");
         }
     }
+
+    private void sendEmail(User user) {
+        Mail mail = new Mail();
+        double aylikKrediOdemesi = user.getAccount().getKrediBorcu() / 10;
+
+        mail.setContent("Krdei başvurunuz onaylanmıştır Teşekkürler... ");
+        mail.setSubject("Kredi Başvuru Hk.");
+
+        Dekont dekont = new Dekont();
+        dekont.setCreditAmount(user.getAccount().getKrediBorcu());
+        dekont.setAccountNo(user.getAccount().getAccountNo());
+        dekont.setPayPerMounth(aylikKrediOdemesi);
+
+        mail.setDekont(dekont);
+        user.getGelenKutusu().add(mail);
+    }
+
+
+
 }
