@@ -1,5 +1,7 @@
 package com.bilgeadam.lesson014;
 
+import java.util.UUID;
+
 public class Book {
     private String id;
     private String name;
@@ -9,6 +11,7 @@ public class Book {
     private Category category;
 
     public Book(String name, String authorName, String publisher, double price, Category category) {
+        this.id = UUID.randomUUID().toString();
         this.name = name;
         this.authorName = authorName;
         this.publisher = publisher;
@@ -62,5 +65,17 @@ public class Book {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", authorName='" + authorName + '\'' +
+                ", publisher='" + publisher + '\'' +
+                ", price=" + price +
+                ", category=" + category +
+                '}';
     }
 }

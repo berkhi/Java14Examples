@@ -6,8 +6,15 @@ public class Main {
 
 
     static UserServiceImpl userService = new UserServiceImpl();
+    static AdminService adminService = new AdminService();
 
     public static void main(String[] args) {
+
+        DataBase.library.getBookList().add(new Book("XKitabı","Ali", "AYayın", 150, new Category("Polisiye")));
+        DataBase.library.getBookList().add(new Book("YKitabı","Ali", "BYayın", 200, new Category("Roman")));
+        DataBase.library.getBookList().add(new Book("ZKitabı","Ayşe", "CYayın", 300, new Category("Öykü")));
+        DataBase.library.getBookList().add(new Book("DKitabı","Mehmet", "DYayın", 350, new Category("Hikaye")));
+
 
         systemMenu();
 
@@ -41,6 +48,9 @@ public class Main {
     //userApplication a gidecek ve hoşgeldiniz (kullanıcın usernameni
 
 
+
+
+
     public static void systemMenu() {
         System.out.println("1- User İşlemleri");
         System.out.println("2- Admin Girişi");
@@ -61,12 +71,32 @@ public class Main {
             }
 
         }
-
-
     }
 
     public static void adminPage() {
-        System.out.println("Kitap Ekle");
+        while (true) {
+            System.out.println("1- Kitap Ekle");
+            System.out.println("2- Bütün kitapları listelesin");
+            System.out.println("3- Yazara göre arama yap");
+            System.out.println("4- kitabın id sine göre silme işlemi ");
+
+            int secim = InputUtil.getIntegerValue("Seçim girin");
+
+            switch (secim) {
+                case 1:
+                    adminService.createBook();
+                    break;
+                case 2:
+                    adminService.findAllBooks();
+                    break;
+                case 3:
+                    adminService.findBookByAuthorName();
+                    break;
+                case 4:
+                    adminService.deleteById();
+                    break;
+            }
+        }
     }
 
     public static void userPage() {
