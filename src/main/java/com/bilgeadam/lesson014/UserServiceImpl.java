@@ -20,18 +20,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void login() {
+    public Customer login() {
         String username = InputUtil.getStringValue("Usernameinizi girin: ");
         String password = InputUtil.getStringValue("Şifre gir: ");
 
-        //[customer, customer]
+        Customer customer = findCustomerByUsernameAndPassword(username, password);
+        if (customer != null) {
+            return customer;
+        }
+        System.out.println("Kullanıcı bulunamadı");
+        return null;
+    }
+
+    private Customer findCustomerByUsernameAndPassword(String username, String password) {
         for (Customer customer : DataBase.library.getCustomerList()) {
             if (username.equals(customer.getUsername()) && password.equals(customer.getPassword())) {
-                System.out.println("Hoşgeldiniz " + customer.getUsername());
-                return;
+                return customer;
             }
         }
-        System.out.println("Kullanıcı bulunamadı!! ");
+        return null;
     }
 
 }

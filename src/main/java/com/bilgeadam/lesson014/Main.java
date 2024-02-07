@@ -5,26 +5,11 @@ import java.util.Scanner;
 public class Main {
 
 
+    static UserServiceImpl userService = new UserServiceImpl();
 
     public static void main(String[] args) {
 
-        //systemMenu();
-
-        /*
-        DataBase.library.getBookList().add(new Book("XKitabı","Ali", "AYayın", 150, new Category("Polisiye")));
-        DataBase.library.getBookList().add(new Book("YKitabı","Ali", "BYayın", 200, new Category("Roman")));
-        DataBase.library.getBookList().add(new Book("ZKitabı","Ayşe", "CYayın", 300, new Category("Öykü")));
-        DataBase.library.getBookList().add(new Book("DKitabı","Mehmet", "DYayın", 350, new Category("Hikaye")));
-
-         */
-
-        UserServiceImpl userService = new UserServiceImpl();
-
-        userService.register();
-        userService.login();
-
-        //System.out.println(DataBase.library.getCustomerList().get(0).getUsername());
-
+        systemMenu();
 
     }
 
@@ -53,27 +38,78 @@ public class Main {
     //register olsun
     //sonra login olsun
     //sonra login olduktan sonra
-    //userApplication a gidecek ve hoşgeldiniz (kullanıcın id si)
+    //userApplication a gidecek ve hoşgeldiniz (kullanıcın usernameni
 
 
-
-
-    public static void systemMenu(){
+    public static void systemMenu() {
         System.out.println("1- User İşlemleri");
         System.out.println("2- Admin Girişi");
 
+        while (true) {
+            int secim = InputUtil.getIntegerValue("Seçim girin");
+
+            switch (secim) {
+                case 1:
+                    userPage();
+                    break;
+                case 2:
+                    adminPage();
+                    break;
+                case 0:
+                    System.exit(0);
+                    break;
+            }
+
+        }
+
 
     }
-    public static void adminPage(){
+
+    public static void adminPage() {
         System.out.println("Kitap Ekle");
     }
 
-    public static void userPage(){
-        System.out.println("Register");
-        System.out.println("Login");
+    public static void userPage() {
+
+        while (true) {
+            System.out.println("Register");
+            System.out.println("Login");
+
+            int secim = InputUtil.getIntegerValue("Seçim girin");
+
+            switch (secim) {
+                case 1:
+                    userService.register();
+                    break;
+                case 2:
+                    Customer loggedInCustomer = userService.login();
+                    if (loggedInCustomer != null) {
+                        userApplication(loggedInCustomer);
+                    }
+                    break;
+            }
+        }
+
     }
-    public static void userApplication(){
-        System.out.println("Kitap Kirala");
+
+    public static void userApplication(Customer customer) {
+        System.out.println("Hoşgeldiniz " + customer.getUsername());
+
+        while (true) {
+            System.out.println("1- Kitap Kirala");
+            System.out.println("2- Bişey Kirala");
+            System.out.println("3- Bişey Sat");
+
+            int secim = InputUtil.getIntegerValue("Seçim girin");
+
+            switch (secim) {
+                case 1:
+                    System.out.println("1- Kitap Kirala");
+                    break;
+
+            }
+        }
+
 
     }
 

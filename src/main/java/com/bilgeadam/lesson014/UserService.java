@@ -3,7 +3,7 @@ package com.bilgeadam.lesson014;
 public interface UserService {
 
 
-    void login();
+    Customer login();
     void register();
 
 }

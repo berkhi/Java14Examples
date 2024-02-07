@@ -17,7 +17,7 @@ public class InputUtil {
         return deger;
     }
 
-    public static double getIntegerValue(String input){
+    public static int getIntegerValue(String input){
         System.out.println(input);
         int deger = scanner.nextInt();
         scanner.nextLine();
