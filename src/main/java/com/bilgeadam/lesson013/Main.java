@@ -1,6 +1,8 @@
 package com.bilgeadam.lesson013;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
@@ -92,12 +94,5 @@ public class Main {
         System.out.println("Aylık Ödeme Miktarı " +user.getGelenKutusu().get(0).getDekont().getPayPerMounth());
 
 
-
-
-
-
-
     }
-
-
 }
