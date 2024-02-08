@@ -15,7 +15,6 @@ public class Main {
         DataBase.library.getBookList().add(new Book("ZKitabı","Ayşe", "CYayın", 300, new Category("Öykü")));
         DataBase.library.getBookList().add(new Book("DKitabı","Mehmet", "DYayın", 350, new Category("Hikaye")));
 
-
         systemMenu();
 
     }
@@ -80,6 +79,13 @@ public class Main {
             System.out.println("3- Yazara göre arama yap");
             System.out.println("4- kitabın id sine göre silme işlemi ");
 
+            System.out.println("5- kitabı Soft Delete yapalım ");
+
+            System.out.println("6- Kitaba indirim uygulayalım ");
+
+
+
+
             int secim = InputUtil.getIntegerValue("Seçim girin");
 
             switch (secim) {
@@ -94,6 +100,12 @@ public class Main {
                     break;
                 case 4:
                     adminService.deleteById();
+                    break;
+                case 5:
+                    adminService.changeStatusToDeleted();
+                    break;
+                case 6:
+                    adminService.discountForBook();
                     break;
             }
         }
@@ -127,8 +139,6 @@ public class Main {
 
         while (true) {
             System.out.println("1- Kitap Kirala");
-            System.out.println("2- Bişey Kirala");
-            System.out.println("3- Bişey Sat");
 
             int secim = InputUtil.getIntegerValue("Seçim girin");
 

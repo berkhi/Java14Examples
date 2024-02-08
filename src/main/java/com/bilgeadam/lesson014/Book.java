@@ -9,6 +9,8 @@ public class Book {
     private String publisher;
     private double price;
     private Category category;
+    private Status status;
+
 
     public Book(String name, String authorName, String publisher, double price, Category category) {
         this.id = UUID.randomUUID().toString();
@@ -17,6 +19,15 @@ public class Book {
         this.publisher = publisher;
         this.price = price;
         this.category = category;
+        this.status = Status.ACTIVE;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public String getId() {
