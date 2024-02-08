@@ -1,5 +1,6 @@
 package com.bilgeadam.lesson014;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class Book {
@@ -11,6 +12,9 @@ public class Book {
     private Category category;
     private Status status;
 
+    private LocalDateTime rentDate;
+    private LocalDateTime returnDate;
+
 
     public Book(String name, String authorName, String publisher, double price, Category category) {
         this.id = UUID.randomUUID().toString();
@@ -20,6 +24,22 @@ public class Book {
         this.price = price;
         this.category = category;
         this.status = Status.ACTIVE;
+    }
+
+    public LocalDateTime getRentDate() {
+        return rentDate;
+    }
+
+    public void setRentDate(LocalDateTime rentDate) {
+        this.rentDate = rentDate;
+    }
+
+    public LocalDateTime getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(LocalDateTime returnDate) {
+        this.returnDate = returnDate;
     }
 
     public Status getStatus() {

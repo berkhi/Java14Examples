@@ -65,8 +65,7 @@ public class AdminService {
             book.setStatus(Status.DELETED);
         }
     }
-
-    private Book findById(String id) {
+    public Book findById(String id) {
         for (Book book : DataBase.library.getBookList()) {
             if (book.getId().equals(id)) {
                 return book;
@@ -75,6 +74,7 @@ public class AdminService {
         System.out.println("Kitap bulunamadı");
         return null;
     }
+
 
     public void discountForBook() {
         findAllBooks();

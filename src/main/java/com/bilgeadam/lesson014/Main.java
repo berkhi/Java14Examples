@@ -17,6 +17,8 @@ public class Main {
 
         systemMenu();
 
+
+
     }
 
     //1- Admin Girişi -> AdminLoginPage
@@ -47,9 +49,6 @@ public class Main {
     //userApplication a gidecek ve hoşgeldiniz (kullanıcın usernameni
 
 
-
-
-
     public static void systemMenu() {
         System.out.println("1- User İşlemleri");
         System.out.println("2- Admin Girişi");
@@ -78,13 +77,8 @@ public class Main {
             System.out.println("2- Bütün kitapları listelesin");
             System.out.println("3- Yazara göre arama yap");
             System.out.println("4- kitabın id sine göre silme işlemi ");
-
             System.out.println("5- kitabı Soft Delete yapalım ");
-
             System.out.println("6- Kitaba indirim uygulayalım ");
-
-
-
 
             int secim = InputUtil.getIntegerValue("Seçim girin");
 
@@ -137,14 +131,24 @@ public class Main {
     public static void userApplication(Customer customer) {
         System.out.println("Hoşgeldiniz " + customer.getUsername());
 
+
         while (true) {
             System.out.println("1- Kitap Kirala");
+            System.out.println("2- Kiraladığım kitabları görüntüle ");
+            System.out.println("3- Kitabı iade et ");
 
             int secim = InputUtil.getIntegerValue("Seçim girin");
 
             switch (secim) {
                 case 1:
-                    System.out.println("1- Kitap Kirala");
+                    userService.rentBook(customer);
+                    break;
+                case 2:
+                    userService.getAllRentedBook(customer);
+                    break;
+
+                case 3:
+                    userService.returnBook(customer);
                     break;
 
             }
