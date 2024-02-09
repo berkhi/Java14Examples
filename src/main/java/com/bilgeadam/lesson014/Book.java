@@ -10,7 +10,7 @@ public class Book {
     private String publisher;
     private double price;
     private Category category;
-    private Status status;
+    private BookStatus status;
 
     private LocalDateTime rentDate;
     private LocalDateTime returnDate;
@@ -23,7 +23,7 @@ public class Book {
         this.publisher = publisher;
         this.price = price;
         this.category = category;
-        this.status = Status.ACTIVE;
+        this.status = BookStatus.ACTIVE;
     }
 
     public LocalDateTime getRentDate() {
@@ -42,11 +42,11 @@ public class Book {
         this.returnDate = returnDate;
     }
 
-    public Status getStatus() {
+    public BookStatus getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(BookStatus status) {
         this.status = status;
     }
 

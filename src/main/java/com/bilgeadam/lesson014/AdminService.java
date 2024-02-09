@@ -1,6 +1,12 @@
 package com.bilgeadam.lesson014;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+
 public class AdminService {
+    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     public void createBook() {
         String bookName = InputUtil.getStringValue("Kitap İsmini Girin");
@@ -19,7 +25,7 @@ public class AdminService {
 
     public void findAllBooks() {
         for (Book book : DataBase.library.getBookList()) {
-            if (book.getStatus() == Status.ACTIVE) {
+            if (book.getStatus() == BookStatus.ACTIVE) {
                 System.out.println(book);
             }
         }
@@ -62,7 +68,7 @@ public class AdminService {
 
         Book book = findById(id);
         if (book != null) {
-            book.setStatus(Status.DELETED);
+            book.setStatus(BookStatus.DELETED);
         }
     }
     public Book findById(String id) {
@@ -87,6 +93,23 @@ public class AdminService {
         }
 
 
+    }
+
+    public List<Customer> getAllCustomerByDate() {
+        List<Customer> customerList = new ArrayList<>();
+        String date = InputUtil.getStringValue("Lütfen tarih firin Frmat (YYYY-MM-DD HH:mm)");
+        //2024-01-05 16:02
+
+        LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
+
+
+        for (Customer user: DataBase.library.getCustomerList()) {
+            if(user.getSignDate().isAfter(dateTime)){
+                customerList.add(user);
+                System.out.println("Username: " + user.getUsername() + " Sign Date " + user.getSignDate().format(formatter));
+            }
+        }
+        return customerList;
     }
 }
 

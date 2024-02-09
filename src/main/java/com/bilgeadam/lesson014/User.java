@@ -7,6 +7,7 @@ public class User {
     private String username;
     private String password;
     private LocalDateTime signDate;
+    private UserStatus userStatus;
     public User(){
 
     }
@@ -15,6 +16,14 @@ public class User {
         this.username = username;
         this.password = password;
         this.signDate = LocalDateTime.now();
+    }
+
+    public UserStatus getUserStatus() {
+        return userStatus;
+    }
+
+    public void setUserStatus(UserStatus userStatus) {
+        this.userStatus = userStatus;
     }
 
     public String getUsername() {

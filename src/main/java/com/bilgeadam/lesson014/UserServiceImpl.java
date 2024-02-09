@@ -26,13 +26,29 @@ public class UserServiceImpl implements UserService {
     @Override
     public Customer login() {
         String username = InputUtil.getStringValue("Usernameinizi girin: ");
-        String password = InputUtil.getStringValue("Şifre gir: ");
 
-        Customer customer = findCustomerByUsernameAndPassword(username, password);
-        if (customer != null) {
-            return customer;
+
+        Customer customer = findCustomerByUsername(username);
+
+        if (customer != null ) {
+            if(customer.getUserStatus() != UserStatus.BANNED){
+                for (int i = 3; i > 0; i--) {
+                    String password = InputUtil.getStringValue("Şifre gir: ");
+                    if (customer.getPassword().equals(password)) {
+                        System.out.println("Giriş başarılı");
+                        return customer;
+                    } else {
+                        System.out.println("Şifra ynalış" + (i - 1) + " Hakkınız  Yoksa hesabınız askıya alınacak");
+                    }
+                }
+                System.out.println("Hesabınız banlandı");
+                customer.setUserStatus(UserStatus.BANNED);
+                return null;
+            }else {
+                System.out.println("Hesabınız banlanmştır. giriş yapamazsınız");
+            }
         }
-        System.out.println("Kullanıcı bulunamadı");
+        System.out.println("Hesap bulunamadı");
         return null;
     }
 
@@ -45,20 +61,30 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    private Customer findCustomerByUsername(String username) {
+        for (Customer customer : DataBase.library.getCustomerList()) {
+            if (username.equals(customer.getUsername())) {
+                return customer;
+            }
+        }
+        System.out.println("Kullanıcı bulunamadı");
+        return null;
+    }
+
     public void rentBook(Customer customer) {
         Main.adminService.findAllBooks();
         String id = InputUtil.getStringValue("Hanig kitabı kiralikcasın : ");
         Book book = Main.adminService.findById(id);
 
         if (book != null) {
-            if (customer.getBalance() >= book.getPrice() && book.getStatus() == Status.ACTIVE) {
+            if (customer.getBalance() >= book.getPrice() && book.getStatus() == BookStatus.ACTIVE) {
                 customer.getRentedBooks().add(book);
                 customer.setBalance(customer.getBalance() - book.getPrice());
 
                 book.setRentDate(LocalDateTime.now());
                 book.setReturnDate(setReturnDate());
 
-                book.setStatus(Status.INRENT);
+                book.setStatus(BookStatus.INRENT);
 
                 System.out.println("Kitabı iade etmeniz tarihiniz: " + book.getReturnDate().format(tarihFormati));
                 System.out.println(book.getName() + " Kitabını başarıyla kiraladınız");
@@ -78,15 +104,15 @@ public class UserServiceImpl implements UserService {
         return currentDate.plusDays(day);
     }
 
-    public void returnBook(Customer customer){
+    public void returnBook(Customer customer) {
         String id = InputUtil.getStringValue("Hanig kitabı kiralikcasın : ");
         Book book = Main.adminService.findById(id);
 
-        if(book != null){
-            if(customer.getRentedBooks().remove(book)){
+        if (book != null) {
+            if (customer.getRentedBooks().remove(book)) {
                 System.out.println("Kitabı iade ettiniz teşekkürler");
-                book.setStatus(Status.ACTIVE);
-            }else {
+                book.setStatus(BookStatus.ACTIVE);
+            } else {
                 System.out.println("iade işlemi başarısız");
             }
         }

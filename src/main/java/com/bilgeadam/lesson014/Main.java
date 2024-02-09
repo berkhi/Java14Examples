@@ -1,5 +1,6 @@
 package com.bilgeadam.lesson014;
 
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class Main {
@@ -14,6 +15,14 @@ public class Main {
         DataBase.library.getBookList().add(new Book("YKitabı","Ali", "BYayın", 200, new Category("Roman")));
         DataBase.library.getBookList().add(new Book("ZKitabı","Ayşe", "CYayın", 300, new Category("Öykü")));
         DataBase.library.getBookList().add(new Book("DKitabı","Mehmet", "DYayın", 350, new Category("Hikaye")));
+
+
+        Customer customer1 = new Customer("deniz","1234","123535","12412",55);
+        Customer customer2 = new Customer("ahmet","1234","123535","12412",55);
+        customer1.setSignDate(LocalDateTime.of(2025, 3, 11, 0, 0));
+        customer2.setSignDate(LocalDateTime.of(2024, 1, 1, 15, 0));
+        DataBase.library.getCustomerList().add(customer1);
+        DataBase.library.getCustomerList().add(customer2);
 
         systemMenu();
 
@@ -49,6 +58,14 @@ public class Main {
     //userApplication a gidecek ve hoşgeldiniz (kullanıcın usernameni
 
 
+
+    //1- kullanıcı login olurken şifresini 3 kere doğru girmezse hesabını askıya alalım ve login yapamicak
+
+    //2- kullanıcını girmiş olduğu tarihten sonra sisteme kayıt olan kullanıcıları listeleyelim
+    //2024.02.05 bu tarhiten sonra kayıt olan kullanıcıları listelicez.
+
+
+
     public static void systemMenu() {
         System.out.println("1- User İşlemleri");
         System.out.println("2- Admin Girişi");
@@ -80,6 +97,8 @@ public class Main {
             System.out.println("5- kitabı Soft Delete yapalım ");
             System.out.println("6- Kitaba indirim uygulayalım ");
 
+
+
             int secim = InputUtil.getIntegerValue("Seçim girin");
 
             switch (secim) {
@@ -101,6 +120,9 @@ public class Main {
                 case 6:
                     adminService.discountForBook();
                     break;
+                case 7:
+                    adminService.getAllCustomerByDate();
+                    break;
             }
         }
     }
@@ -110,6 +132,7 @@ public class Main {
         while (true) {
             System.out.println("Register");
             System.out.println("Login");
+            System.out.println("3- Üst sayfa");
 
             int secim = InputUtil.getIntegerValue("Seçim girin");
 
@@ -122,6 +145,9 @@ public class Main {
                     if (loggedInCustomer != null) {
                         userApplication(loggedInCustomer);
                     }
+                    break;
+                case 3 :
+                    systemMenu();
                     break;
             }
         }
@@ -136,6 +162,7 @@ public class Main {
             System.out.println("1- Kitap Kirala");
             System.out.println("2- Kiraladığım kitabları görüntüle ");
             System.out.println("3- Kitabı iade et ");
+            System.out.println("4- Logout ");
 
             int secim = InputUtil.getIntegerValue("Seçim girin");
 
@@ -146,15 +173,15 @@ public class Main {
                 case 2:
                     userService.getAllRentedBook(customer);
                     break;
-
                 case 3:
                     userService.returnBook(customer);
+                    break;
+                case 4:
+                    userPage();
                     break;
 
             }
         }
-
-
     }
 
 

@@ -1,6 +1,6 @@
 package com.bilgeadam.lesson014;
 
-public enum Status {
+public enum BookStatus {
 
     DELETED,
     ACTIVE,
