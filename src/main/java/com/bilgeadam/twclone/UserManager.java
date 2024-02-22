@@ -185,4 +185,8 @@ public class UserManager implements PersonService {
     public void somethin(User user) {
         System.out.println(user.toString());
     }
+
+    protected void bisey(){
+
+    }
 }

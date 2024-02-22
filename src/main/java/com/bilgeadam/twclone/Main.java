@@ -1,5 +1,8 @@
 package com.bilgeadam.twclone;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.bilgeadam.lesson014.Main.adminPage;
 
 public class Main {
@@ -14,6 +17,7 @@ public class Main {
         DataBase.userList.add(user2);
         DataBase.personList.add(user2);
         tweeterSystemMenu();
+        
 
     }
 
