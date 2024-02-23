@@ -34,7 +34,6 @@ public class SetOrnek {
                 tekrarEtmeyenler.remove(kelime.charAt(i));
             }
         }
-
         System.out.println("Tekrar Edenler " + tekrarEdenler);
         System.out.println("Tekrar Etmeyenler " + tekrarEtmeyenler);
         System.out.println("----------------");
