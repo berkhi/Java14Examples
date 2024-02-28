@@ -13,5 +13,13 @@ public class Main {
 
         Market market = new Market();
 
+        market.sepeteEkle();
+
+        market.sepeteEkle();
+
+        market.sepeteEkle();
+
+        market.sepetiGoster();
+
     }
 }
