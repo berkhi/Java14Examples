@@ -1,0 +1,18 @@
+Soru1:
+10
+OOP nedir?
+yemektir
+pcdir
+okuldur
+tasarım desenidir
+içecektir
+tasarım desenidir
+Soru2:
+10
+Soruyu şunlara göre yap Python Nedir?
+yemektir
+pcdir
+okuldur
+yazılım dilidir
+bardaktır
+yazılım dilidir
